@@ -4,8 +4,17 @@ rotacao = alfabeto[13:]+alfabeto[:13]
 
 ed = int(input("Type 1 for encrypt and 2 for decrypt\n"))
 
+arqv = open("texto.txt", "r")
+
+text = str(arqv.readlines())
+
+text = text.replace("[", "")
+text = text.replace("'", "")
+text = text.replace("]", "")
+
+arqvout = open("encryptedsub.txt","r+")
+
 if(ed == 1):
-	text = input("Type in what you want encrypted\n")
 	text = text.lower()
 	encrypted = ''
 	for x in text:
@@ -16,12 +25,16 @@ if(ed == 1):
 			encrypted += x
 	encrypted = encrypted.upper()
 	print(encrypted)
+	arqvout.write(encrypted)
 
 elif(ed == 2):
-	text = input("Type in what you want decrypted\n")
-	text = text.lower()
+	decrypt = str(arqvout.readlines())
+	decrypt = decrypt.lower()
+	decrypt.replace("[", "")
+	decrypt.replace("'", "")
+	decrypt.replace("]", "")
 	decrypted = ''
-	for x in text:
+	for x in decrypt:
 		if(x.isalpha()):
 			indice = rotacao.find(x)
 			decrypted += alfabeto[indice]
