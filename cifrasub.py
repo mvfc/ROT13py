@@ -9,8 +9,11 @@ if(ed == 1):
 	text = text.lower()
 	encrypted = ''
 	for x in text:
-		indice = alfabeto.find(x)
-		encrypted += rotacao[indice]
+		if(x.isalpha()):
+			indice = alfabeto.find(x)
+			encrypted += rotacao[indice]
+		else:
+			encrypted += x
 	encrypted = encrypted.upper()
 	print(encrypted)
 
@@ -19,6 +22,9 @@ elif(ed == 2):
 	text = text.lower()
 	decrypted = ''
 	for x in text:
-		indice = rotacao.find(x)
-		decrypted += alfabeto[indice]
+		if(x.isalpha()):
+			indice = rotacao.find(x)
+			decrypted += alfabeto[indice]
+		else:
+			decrypted += x
 	print(decrypted)
